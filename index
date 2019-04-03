@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>FE2</title>
+		<style>
+			body {
+			background: #bababa;
+		}
+		ol, ul {
+			list-style: none;
+		}
+		
+		.clear{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		#wrapper{
+			background-color: rgba(77, 160, 190, 0.7);
+			margin: 0 auto;
+			width: 97%;
+			border-radius: 15px;
+		}
+		#main-nav, footer{
+			background: #355fad;
+			border-radius: 10px;
+			width: 50%;
+			height: 50px;
+			margin: 10px auto;
+		}
+		footer {
+			color: white;
+			text-align: center;
+			height: 20px;
+		}
+		#main-nav ul{
+			text-align: center;
+			padding-top: 18px;
+		}
+		#main-nav ul li{
+			display: inline-block;
+		}
+		#main-nav ul li a{
+			margin-left: 20px;
+			font-family: Arial;
+			font-weight: bold;
+			text-align: center;
+			color: #fff;
+			text-decoration: none;
+		}
+		#main-nav ul li a:hover{
+			border-radius: 5px;
+			background: #717375;
+			padding: 3px;
+			margin-left: 17px;
+		}
+		#form-wrapper{
+			margin: 15px auto;
+			width: 40%;
+			border-radius: 10px;
+			padding-bottom: 25px;
+			background: #355fad;
+			color: #FFF;
+		}
+		#main-form{
+			padding-top: 10px;
+			text-align: center;
+		}
+		#main-form table{
+			margin-left: auto;
+			margin-right: auto;
+		}
+		#lorem-pixel{
+			text-align: center;
+		}
+		#lorem-pixel img{
+			border-radius: 5px;
+			height: 142px;
+		}
+		main{
+			color:#fff;
+			width: 30%;
+			margin: 0 auto;
+		}
+		main h4{
+			text-align: center;
+			font-size: 30px;
+			font-weight: bold;
+			color: #fff;
+		}
+		main article{
+			text-align: center;
+			color: #000;
+		}
+		#tableNames{
+		}
+		#scoreInformation{
+			border-collapse: collapse;
+			width:100%;
+			color: white;
+			text-align:center;
+			border: 2px solid white;
+			margin-left: auto;
+			margin-right: auto;
+			width:250px;	
+		}
+		#scoreInformation tr{
+			border: 1px solid white;
+		}
+		footer(clear: both;)
+		</style>
+	</head>
+	<body>
+		<div id="wrapper">
+			<header>
+				<nav id="main-nav">
+					<ul>
+						<li>
+							<a href="#">Начало</a>
+						</li>
+						<li>
+							<a href="#">Курсове</a>
+						</li>					
+						<li>
+							<a href="#">Професии</a>
+						</li>
+						<li>
+							<a href="#" target="_blank">За Нас</a>
+						</li>				
+					</ul>
+				</nav>
+			</header>
+			<div id="lorem-pixel">
+				<img src="wa_logo.jpg" />
+			</div>
+			<div id="form-wrapper">
+				<form id="main-form" action="" method="POST">
+					<table>
+						<tr>
+							<td>
+								<label for="username">Username:</label>
+							</td>
+							<td>
+								<input type="text" id="username" name="username" placeholder="Username..." required="required"><br />
+							</td>
+						</tr>
+						<tr>
+							<td>						
+								<label for="UserId">User Id:</label>
+							</td>
+							<td>
+								<input type="text" id="UserId" name="UserId" placeholder="User Id..." required="required"><br />
+							</td>
+						</tr>
+						<tr>
+							<td>						
+								<label for="Score">Score:</label>
+							</td>
+							<td>
+								<input type="number" min="0" max="100" id="score" name="Score" placeholder="Score..." required="required"><br />
+							</td>
+						</tr>
+						<tr>	
+							<td colspan="2">
+								<input type="button" onclick="addStudentScore();" value="Add Score">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			
+			<main>	
+				<details>
+					<summary>Texttttt</summary>
+					<article>
+						<h4>Lorem Ipsum</h4>
+						<p><mark>Lorem ipsum</mark> dolor sit amet, in detracto intellegat his. Idque antiopam nam in, 
+						eum ignota lucilius ex, deleniti gloriatur vim ad. Legere putent efficiendi quo in. Et sit integre 
+						labores, iuvaret oporteat reformidans ad eam <time>20:00</time>
+						</p>
+					</article>
+				</details>		 
+			</main>
+			<div class="clear" id="tableNames"></div>
+			<footer>
+					<span>Todor Makreev</span>
+					<span>&copy;</span>
+			</footer>
+		</div>
+		<script>
+			
+			var scoreInfo = [
+							['Ivan', 'wa-156254-236', '75'],
+							['Nikolay', 'wa-152764-276', '74'],
+							['Petar', 'wa-152264-231', '15'],
+							['Georgi', 'wa-101264-191', '100']
+						];
+			function scoreToTable(){
+				// We create a table from a given array. 
+				var temp = '<table id="scoreInformation"><tr><th>First Name</th><th>User Id</th><th>Score</th></tr>';
+				for(var i = 0;i < (scoreInfo.length);i++){
+					// When we use += we add the new value after the already saved one. 
+					// If we use only = only the new one will be saved.
+					temp += '<tr><td id="fname">' + scoreInfo[i][0] + '</td><td id="sname">' + scoreInfo[i][1] + '</td><td id="sname">' + scoreInfo[i][2] + '</td></tr>';
+				}
+				temp += '</table>';
+				document.getElementById('tableNames').innerHTML = temp;
+			}
+			scoreToTable();	
+
+			function addStudentScore() {
+				var username = document.getElementById('username').value;
+				var userId = document.getElementById('UserId').value;
+				var score = document.getElementById('score').value;
+				
+				scoreInfo.push([username, userId, score]);
+				scoreToTable();
+			}
+		</script>
+	</body>
+</html>
